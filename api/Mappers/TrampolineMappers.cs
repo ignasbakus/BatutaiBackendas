@@ -23,5 +23,19 @@ namespace api.Mappers
                 Description = trampolineModel.Description
             };
         }
+
+        public static Trampoline ToTrampolineFromCreateDTO(this CreateTrampolineRequestDto trampolineDto)
+        {
+            return new Trampoline
+            {
+                Name = trampolineDto.Name,
+                Image = trampolineDto.Image,
+                Price = trampolineDto.Price,
+                Width = trampolineDto.Width,
+                Length = trampolineDto.Length,
+                Height = trampolineDto.Height,
+                Description = trampolineDto.Description
+            };
+        }
     }
 }

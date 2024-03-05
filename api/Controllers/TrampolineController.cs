@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos.Trampoline;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,12 +39,22 @@ namespace api.Controllers
             var trampoline = _context.Trampolines.Find(id);
 
             // If there is no trampoline with such id, returns NotFound()
-            if(trampoline == null)
+            if (trampoline == null)
             {
                 return NotFound();
             }
 
             return Ok(trampoline.ToTrampolineDto());
         }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateTrampolineRequestDto trampolineDto)
+        {
+            var trampolineModel = trampolineDto.ToTrampolineFromCreateDTO();
+            _context.Trampolines.Add(trampolineModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new { id = trampolineModel.Id }, trampolineModel.ToTrampolineDto());
+        }
+
     }
 }
