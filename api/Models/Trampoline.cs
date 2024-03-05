@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace api.Models
 {
+    [Table("Trampolines")]
     public class Trampoline
     {
         public int Id { get; set; }
