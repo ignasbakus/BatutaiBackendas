@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -22,7 +23,9 @@ namespace api.Controllers
         public IActionResult GetAll()
         {
             // ToList() makes the objects as a list so it can load them into the memory. List offers more functionality
-            var trampolines = _context.Trampolines.ToList();
+            var trampolines = _context.Trampolines.ToList()
+            // Select is basically map, and it maps through the data so you can use it
+            .Select(s => s.ToTrampolineDto());
 
             return Ok(trampolines);
         }
@@ -40,7 +43,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(trampoline);
+            return Ok(trampoline.ToTrampolineDto());
         }
     }
 }
