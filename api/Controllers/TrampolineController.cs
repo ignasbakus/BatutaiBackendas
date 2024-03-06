@@ -6,6 +6,7 @@ using api.Data;
 using api.Dtos.Trampoline;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -21,22 +22,22 @@ namespace api.Controllers
 
         // Retrieves all trampolines from the db
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             // ToList() makes the objects as a list so it can load them into the memory. List offers more functionality
-            var trampolines = _context.Trampolines.ToList()
+            var trampolines = await _context.Trampolines.ToListAsync();
             // Select is basically map, and it maps through the data so you can use it
-            .Select(s => s.ToTrampolineDto());
+            var trampolineDto = trampolines.Select(s => s.ToTrampolineDto());
 
             return Ok(trampolines);
         }
 
         // retrieves only a specific trampoline
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
             // Find() finds the specific ID trampoline
-            var trampoline = _context.Trampolines.Find(id);
+            var trampoline = await _context.Trampolines.FindAsync(id);
 
             // If there is no trampoline with such id, returns NotFound()
             if (trampoline == null)
@@ -48,19 +49,19 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateTrampolineRequestDto trampolineDto)
+        public async Task<IActionResult> Create([FromBody] CreateTrampolineRequestDto trampolineDto)
         {
             var trampolineModel = trampolineDto.ToTrampolineFromCreateDTO();
-            _context.Trampolines.Add(trampolineModel);
-            _context.SaveChanges();
+            await _context.Trampolines.AddAsync(trampolineModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = trampolineModel.Id }, trampolineModel.ToTrampolineDto());
         }
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] UpdateTrampolineRequestDto updateDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateTrampolineRequestDto updateDto)
         {
-            var trampolineModel = _context.Trampolines.FirstOrDefault(x => x.Id == id);
+            var trampolineModel = await _context.Trampolines.FirstOrDefaultAsync(x => x.Id == id);
 
             if (trampolineModel == null)
             {
@@ -75,10 +76,27 @@ namespace api.Controllers
             trampolineModel.Length = updateDto.Length;
             trampolineModel.Description = updateDto.Description;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return Ok(trampolineModel.ToTrampolineDto());
         }
 
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var trampolineModel = await _context.Trampolines.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (trampolineModel == null)
+            {
+                return NotFound();
+            }
+
+            _context.Trampolines.Remove(trampolineModel);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
