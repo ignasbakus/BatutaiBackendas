@@ -56,5 +56,29 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = trampolineModel.Id }, trampolineModel.ToTrampolineDto());
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateTrampolineRequestDto updateDto)
+        {
+            var trampolineModel = _context.Trampolines.FirstOrDefault(x => x.Id == id);
+
+            if (trampolineModel == null)
+            {
+                return NotFound();
+            }
+
+            trampolineModel.Name = updateDto.Name;
+            trampolineModel.Image = updateDto.Image;
+            trampolineModel.Price = updateDto.Price;
+            trampolineModel.Width = updateDto.Width;
+            trampolineModel.Height = updateDto.Height;
+            trampolineModel.Length = updateDto.Length;
+            trampolineModel.Description = updateDto.Description;
+
+            _context.SaveChanges();
+
+            return Ok(trampolineModel.ToTrampolineDto());
+        }
+
     }
 }
