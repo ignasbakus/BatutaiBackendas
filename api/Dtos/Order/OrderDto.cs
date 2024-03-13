@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api.Models
+namespace api.Dtos.Order
 {
-    public class Order
+    public class OrderDto
     {
         public int Id { get; set; }
         public string CustomerName { get; set; } = string.Empty;
@@ -16,6 +16,5 @@ namespace api.Models
         public string City { get; set; } = string.Empty;
         public DateTime ReservationTime { get; set; }
         public int? TrampolineId { get; set; }
-        public Trampoline? Trampoline { get; set; }
     }
 }

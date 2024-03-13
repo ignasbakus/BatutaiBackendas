@@ -60,7 +60,6 @@ namespace api.Repository
             }
 
             existingTrampoline.Name = trampolineDto.Name;
-            existingTrampoline.Image = trampolineDto.Image;
             existingTrampoline.Price = trampolineDto.Price;
             existingTrampoline.Width = trampolineDto.Width;
             existingTrampoline.Height = trampolineDto.Height;

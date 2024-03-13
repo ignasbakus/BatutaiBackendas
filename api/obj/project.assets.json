@@ -4533,19 +4533,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ignas\\.nuget\\packages\\": {}
+    "C:\\Users\\ignas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ignas\\Desktop\\Batutai backas\\BatutaiBackendas\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\ignas\\OneDrive\\Desktop\\BatutaiBackendas\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\Ignas\\Desktop\\Batutai backas\\BatutaiBackendas\\api\\api.csproj",
-      "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ignas\\Desktop\\Batutai backas\\BatutaiBackendas\\api\\obj\\",
+      "projectPath": "C:\\Users\\ignas\\OneDrive\\Desktop\\BatutaiBackendas\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\ignas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ignas\\OneDrive\\Desktop\\BatutaiBackendas\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ignas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ignas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

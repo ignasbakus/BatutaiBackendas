@@ -8,7 +8,6 @@ namespace api.Dtos.Trampoline
     public class CreateTrampolineRequestDto
     {
         public string Name { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public decimal Width { get; set; }
         public decimal Length { get; set; }

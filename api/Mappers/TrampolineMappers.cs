@@ -15,7 +15,6 @@ namespace api.Mappers
             {
                 Id = trampolineModel.Id,
                 Name = trampolineModel.Name,
-                Image = trampolineModel.Image,
                 Price = trampolineModel.Price,
                 Width = trampolineModel.Width,
                 Length = trampolineModel.Length,
@@ -29,7 +28,6 @@ namespace api.Mappers
             return new Trampoline
             {
                 Name = trampolineDto.Name,
-                Image = trampolineDto.Image,
                 Price = trampolineDto.Price,
                 Width = trampolineDto.Width,
                 Length = trampolineDto.Length,

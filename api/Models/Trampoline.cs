@@ -12,7 +12,6 @@ namespace api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
         [Column(TypeName = "decimal(18,2)")]
@@ -22,6 +21,7 @@ namespace api.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Height { get; set; }
         public string Description { get; set; } = string.Empty;
-        public  List<Order> Orders { get; set; } = new List<Order>();
+        public List<Order> Orders { get; set; } = new List<Order>();
+        public List<Image> Images { get; set; } = new List<Image>();
     }
 }

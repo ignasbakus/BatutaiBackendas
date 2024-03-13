@@ -17,6 +17,7 @@ builder.Services.AddDbContext<ApllicationDBContext>(options =>
 });
 
 builder.Services.AddScoped<ITrampolineRepository, TrampolineRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 
