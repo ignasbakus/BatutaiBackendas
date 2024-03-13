@@ -27,5 +27,18 @@ namespace api.Controllers
 
             return Ok(orderDto);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var order = await _orderRepo.GetByIdAsync(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(order.toOrderDto());
+        }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Dtos.Image;
 
 namespace api.Dtos.Trampoline
 {
@@ -14,5 +15,6 @@ namespace api.Dtos.Trampoline
         public decimal Length { get; set; }
         public decimal Height { get; set; }
         public string Description { get; set; } = string.Empty;
+        public List<ImageDto> Images { get; set; }
     }
 }

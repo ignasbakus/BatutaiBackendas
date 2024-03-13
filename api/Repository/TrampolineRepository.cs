@@ -41,12 +41,12 @@ namespace api.Repository
 
         public async Task<List<Trampoline>> GetAllAsync()
         {
-            return await _context.Trampolines.ToListAsync(); ;
+            return await _context.Trampolines.Include(c => c.Images).ToListAsync();
         }
 
         public async Task<Trampoline?> GetByIdAsync(int id)
         {
-            return await _context.Trampolines.FindAsync(id);
+            return await _context.Trampolines.Include(c => c.Images).FirstOrDefaultAsync(i => i.Id == id);
 
         }
 

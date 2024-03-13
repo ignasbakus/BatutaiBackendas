@@ -19,7 +19,8 @@ namespace api.Mappers
                 Width = trampolineModel.Width,
                 Length = trampolineModel.Length,
                 Height = trampolineModel.Height,
-                Description = trampolineModel.Description
+                Description = trampolineModel.Description,
+                Images = trampolineModel.Images.Select(c => c.toImageDto()).ToList()
             };
         }
 

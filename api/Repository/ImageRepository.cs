@@ -9,21 +9,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository
 {
-    public class OrderRepository : IOrderRepository
+    public class ImageRepository : IImageRepository
     {
         private readonly ApllicationDBContext _context;
-        public OrderRepository(ApllicationDBContext context)
+        public ImageRepository(ApllicationDBContext context)
         {
             _context = context;
         }
-        public async Task<List<Order>> GetAllAsync()
+        public async Task<List<Image>> GetAllAsync()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Images.ToListAsync();
         }
 
-        public async Task<Order?> GetByIdAsync(int id)
+        public async Task<Image?> GetByIdAsync(int id)
         {
-            return await _context.Orders.FindAsync(id);
+            return await _context.Images.FindAsync(id);
         }
     }
 }

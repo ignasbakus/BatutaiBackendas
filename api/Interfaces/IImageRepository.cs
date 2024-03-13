@@ -6,9 +6,9 @@ using api.Models;
 
 namespace api.Interfaces
 {
-    public interface IOrderRepository
+    public interface IImageRepository
     {
-        Task<List<Order>> GetAllAsync();
-        Task<Order?> GetByIdAsync(int id);
+        Task<List<Image>> GetAllAsync();
+        Task<Image?> GetByIdAsync(int id);
     }
 }
