@@ -1,0 +1,3 @@
+; // Desktopo: Data Source=localhost;Initial Catalog=Batutai;TrustServerCertificate=True;Trusted_Connection=True;
+
+; Loptopo: Data Source=LAPTOP-MD9UAVIN\\SQLEXPRESS;Initial Catalog=Batutai;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
