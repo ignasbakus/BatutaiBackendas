@@ -23,6 +23,7 @@ builder.Services.AddDbContext<ApllicationDBContext>(options =>
 
 builder.Services.AddScoped<ITrampolineRepository, TrampolineRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
 var app = builder.Build();
 

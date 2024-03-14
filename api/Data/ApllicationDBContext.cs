@@ -17,7 +17,7 @@ namespace api.Data
 
         public DbSet<Trampoline> Trampolines { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Image> Images { get; set;}
+        public DbSet<Image> Image { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

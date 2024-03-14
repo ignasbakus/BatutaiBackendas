@@ -18,12 +18,12 @@ namespace api.Repository
         }
         public async Task<List<Image>> GetAllAsync()
         {
-            return await _context.Images.ToListAsync();
+            return await _context.Image.ToListAsync();
         }
 
         public async Task<Image?> GetByIdAsync(int id)
         {
-            return await _context.Images.FindAsync(id);
+            return await _context.Image.FindAsync(id);
         }
     }
 }

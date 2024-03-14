@@ -15,6 +15,6 @@ namespace api.Dtos.Trampoline
         public decimal Length { get; set; }
         public decimal Height { get; set; }
         public string Description { get; set; } = string.Empty;
-        public List<ImageDto> Images { get; set; }
+        public List<ImageDto>? Images { get; set; }
     }
 }
