@@ -27,5 +27,13 @@ namespace api.Mappers
                 TrampolineId = trampolineId
             };
         }
+
+        public static Image toImageFromUpdate(this UpdateImageRequestDto imageDto)
+        {
+            return new Image
+            {
+                ItemImage = imageDto.ItemImage
+            };
+        }
     }
 }

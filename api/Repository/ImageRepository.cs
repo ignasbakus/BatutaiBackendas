@@ -33,5 +33,21 @@ namespace api.Repository
         {
             return await _context.Image.FindAsync(id);
         }
+
+        public async Task<Image?> UpdateAsync(int id, Image imageModel)
+        {
+            var existingImage = await _context.Image.FindAsync(id);
+
+            if (existingImage == null)
+            {
+                return null;
+            }
+
+            existingImage.ItemImage = imageModel.ItemImage;
+
+            await _context.SaveChangesAsync();
+
+            return existingImage;
+        }
     }
 }

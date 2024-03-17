@@ -55,7 +55,21 @@ namespace api.Controllers
 
             var imageModel = imageDto.toImageFromCreate(trampolineId);
             await _imageRepo.CreateAsync(imageModel);
-            return CreatedAtAction(nameof(GetById), new { id = imageModel }, imageModel.toImageDto());
+            return CreatedAtAction(nameof(GetById), new { id = imageModel.Id }, imageModel.toImageDto());
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateImageRequestDto updateDto)
+        {
+            var image = await _imageRepo.UpdateAsync(id, updateDto.toImageFromUpdate());
+
+            if (image == null)
+            {
+                return NotFound("Image not Found");
+            }
+
+            return Ok(image.toImageDto());
         }
     }
 }
