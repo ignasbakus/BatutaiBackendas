@@ -57,7 +57,7 @@ namespace api.Controllers
         {
             var trampolineModel = trampolineDto.ToTrampolineFromCreateDTO();
             await _trampolineRepo.CreateAsync(trampolineModel);
-            return CreatedAtAction(nameof(GetById), new { id = trampolineModel.Id }, trampolineModel.ToTrampolineDto());
+            return NoContent();
         }
 
         [HttpPut]

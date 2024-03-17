@@ -39,7 +39,7 @@ namespace api.Controllers
 
             if (image == null)
             {
-                return NotFound();
+                return NotFound(); 
             }
 
             return Ok(image.toImageDto());
