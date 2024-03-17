@@ -24,6 +24,20 @@ namespace api.Repository
             return imageModel;
         }
 
+        public async Task<Image?> DeleteAsync(int id)
+        {
+            var imageModel = await _context.Image.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (imageModel == null)
+            {
+                return null;
+            }
+
+            _context.Image.Remove(imageModel);
+            await _context.SaveChangesAsync();
+            return imageModel;
+        }
+
         public async Task<List<Image>> GetAllAsync()
         {
             return await _context.Image.ToListAsync();

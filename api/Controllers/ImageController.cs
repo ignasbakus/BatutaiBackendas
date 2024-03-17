@@ -71,5 +71,19 @@ namespace api.Controllers
 
             return Ok(image.toImageDto());
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var imageModel = await _imageRepo.DeleteAsync(id);
+
+            if (imageModel == null)
+            {
+                return NotFound("Image does not exist");
+            }
+
+            return Ok(imageModel);
+        }
     }
 }
