@@ -16,6 +16,14 @@ namespace api.Repository
         {
             _context = context;
         }
+
+        public async Task<Image> CreateAsync(Image imageModel)
+        {
+            await _context.Image.AddAsync(imageModel);
+            await _context.SaveChangesAsync();
+            return imageModel;
+        }
+
         public async Task<List<Image>> GetAllAsync()
         {
             return await _context.Image.ToListAsync();

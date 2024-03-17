@@ -50,6 +50,11 @@ namespace api.Repository
 
         }
 
+        public Task<bool> TrampolineExist(int id)
+        {
+            return _context.Trampolines.AnyAsync(t => t.Id == id);
+        }
+
         public async Task<Trampoline?> UpdateAsync(int id, UpdateTrampolineRequestDto trampolineDto)
         {
             var existingTrampoline = await _context.Trampolines.FirstOrDefaultAsync(x => x.Id == id);

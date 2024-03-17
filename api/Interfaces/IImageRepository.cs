@@ -10,5 +10,6 @@ namespace api.Interfaces
     {
         Task<List<Image>> GetAllAsync();
         Task<Image?> GetByIdAsync(int id);
+        Task<Image> CreateAsync(Image imageModel);
     }
 }

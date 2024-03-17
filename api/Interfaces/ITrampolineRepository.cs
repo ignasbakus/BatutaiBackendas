@@ -14,5 +14,6 @@ namespace api.Interfaces
         Task<Trampoline> CreateAsync(Trampoline trampolineModel);
         Task<Trampoline?> UpdateAsync(int id, UpdateTrampolineRequestDto trampolineDto);
         Task<Trampoline?> DeleteAsync(int id);
+        Task<bool> TrampolineExist(int id);
     }
 }

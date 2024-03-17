@@ -18,5 +18,14 @@ namespace api.Mappers
                 TrampolineId = imageModel.TrampolineId
             };
         }
+
+        public static Image toImageFromCreate(this CreateImageDto imageDto, int trampolineId)
+        {
+            return new Image
+            {
+                ItemImage = imageDto.ItemImage,
+                TrampolineId = trampolineId
+            };
+        }
     }
 }
