@@ -29,6 +29,9 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var trampolines = await _trampolineRepo.GetAllAsync();
             // Select is basically map, and it maps through the data so you can use it
             var trampolineDto = trampolines.Select(s => s.ToTrampolineDto());
@@ -37,9 +40,12 @@ namespace api.Controllers
         }
 
         // retrieves only a specific trampoline
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             // Find() finds the specific ID trampoline
             var trampoline = await _trampolineRepo.GetByIdAsync(id);
 
@@ -55,15 +61,21 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTrampolineRequestDto trampolineDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var trampolineModel = trampolineDto.ToTrampolineFromCreateDTO();
             await _trampolineRepo.CreateAsync(trampolineModel);
             return NoContent();
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateTrampolineRequestDto updateDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var trampolineModel = await _trampolineRepo.UpdateAsync(id, updateDto);
 
             if (trampolineModel == null)
@@ -75,9 +87,12 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var trampolineModel = await _trampolineRepo.DeleteAsync(id);
 
             if (trampolineModel == null)

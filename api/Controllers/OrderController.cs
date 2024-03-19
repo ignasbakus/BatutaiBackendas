@@ -22,6 +22,9 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var orders = await _orderRepo.GetAllAsync();
 
             var orderDto = orders.Select(s => s.toOrderDto());
@@ -29,9 +32,12 @@ namespace api.Controllers
             return Ok(orderDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var order = await _orderRepo.GetByIdAsync(id);
 
             if (order == null)
@@ -42,18 +48,24 @@ namespace api.Controllers
             return Ok(order.toOrderDto());
         }
 
-        [HttpPost("{trampolineId}")]
+        [HttpPost("{trampolineId:int}")]
         public async Task<IActionResult> Create([FromRoute] int trampolineId, CreateOrderDto orderDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var orderModel = orderDto.toOrderFromCreate(trampolineId);
             await _orderRepo.CreateAsync(orderModel);
             return NoContent();
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateOrderRequestDto updateDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var order = await _orderRepo.UpdateAsync(id, updateDto.toOrderFromUpdate());
 
             if (order == null)
@@ -65,9 +77,12 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+                
             var orderModel = await _orderRepo.DeleteAsync(id);
 
             if (orderModel == null)

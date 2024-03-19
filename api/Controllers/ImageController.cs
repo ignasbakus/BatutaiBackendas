@@ -25,6 +25,9 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var images = await _imageRepo.GetAllAsync();
 
             var imageDto = images.Select(s => s.toImageDto());
@@ -32,22 +35,28 @@ namespace api.Controllers
             return Ok(imageDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var image = await _imageRepo.GetByIdAsync(id);
 
             if (image == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             return Ok(image.toImageDto());
         }
 
-        [HttpPost("{trampolineId}")]
+        [HttpPost("{trampolineId:int}")]
         public async Task<IActionResult> Create([FromRoute] int trampolineId, CreateImageDto imageDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             if (!await _trampolineRepo.TrampolineExist(trampolineId))
             {
                 return BadRequest("Trampoline does not exist");
@@ -59,9 +68,12 @@ namespace api.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateImageRequestDto updateDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var image = await _imageRepo.UpdateAsync(id, updateDto.toImageFromUpdate());
 
             if (image == null)
@@ -73,9 +85,12 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var imageModel = await _imageRepo.DeleteAsync(id);
 
             if (imageModel == null)
