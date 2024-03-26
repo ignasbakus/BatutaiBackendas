@@ -48,6 +48,15 @@ namespace api.Repository
             {
                 trampolines = trampolines.Where(s => s.Name.Contains(query.Name));
             }
+
+            if (!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if (query.SortBy.Equals("Price", StringComparison.OrdinalIgnoreCase))
+                {
+                    trampolines = query.IsDescending ? trampolines.OrderByDescending(s => s.Price) : trampolines.OrderBy(s => s.Price);
+                }
+            }
+
             return await trampolines.ToListAsync();
         }
 
