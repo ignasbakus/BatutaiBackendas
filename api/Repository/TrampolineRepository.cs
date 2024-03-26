@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Trampoline;
+using api.Helpers;
 using api.Interfaces;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -39,9 +40,15 @@ namespace api.Repository
             return trampolineModel;
         }
 
-        public async Task<List<Trampoline>> GetAllAsync()
+        public async Task<List<Trampoline>> GetAllAsync(QueryObject query)
         {
-            return await _context.Trampolines.Include(c => c.Images).ToListAsync();
+            var trampolines = _context.Trampolines.Include(c => c.Images).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Name))
+            {
+                trampolines = trampolines.Where(s => s.Name.Contains(query.Name));
+            }
+            return await trampolines.ToListAsync();
         }
 
         public async Task<Trampoline?> GetByIdAsync(int id)

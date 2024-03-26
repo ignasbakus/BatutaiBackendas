@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Trampoline;
+using api.Helpers;
 using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -27,12 +28,12 @@ namespace api.Controllers
 
         // Retrieves all trampolines from the db
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var trampolines = await _trampolineRepo.GetAllAsync();
+            var trampolines = await _trampolineRepo.GetAllAsync(query);
             // Select is basically map, and it maps through the data so you can use it
             var trampolineDto = trampolines.Select(s => s.ToTrampolineDto());
 

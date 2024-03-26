@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Trampoline;
+using api.Helpers;
 using api.Models;
 
 namespace api.Interfaces
 {
     public interface ITrampolineRepository
     {
-        Task<List<Trampoline>> GetAllAsync();
+        Task<List<Trampoline>> GetAllAsync(QueryObject query);
         Task<Trampoline?> GetByIdAsync(int id);
         Task<Trampoline> CreateAsync(Trampoline trampolineModel);
         Task<Trampoline?> UpdateAsync(int id, UpdateTrampolineRequestDto trampolineDto);
