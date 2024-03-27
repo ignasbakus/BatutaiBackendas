@@ -142,3 +142,5 @@ C:\Users\ignas\OneDrive\Desktop\BatutaiBackendas\api\obj\Debug\net8.0\refint\api
 C:\Users\ignas\OneDrive\Desktop\BatutaiBackendas\api\obj\Debug\net8.0\api.pdb
 C:\Users\ignas\OneDrive\Desktop\BatutaiBackendas\api\obj\Debug\net8.0\api.genruntimeconfig.cache
 C:\Users\ignas\OneDrive\Desktop\BatutaiBackendas\api\obj\Debug\net8.0\ref\api.dll
+C:\Users\ignas\OneDrive\Desktop\BatutaiBackendas\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ignas\OneDrive\Desktop\BatutaiBackendas\api\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
